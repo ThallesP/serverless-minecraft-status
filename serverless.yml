@@ -1,0 +1,18 @@
+service: serverless-minecraft-status
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  getMinecraftStatus:
+    handler: src/functions/GetMinecraftStatus.handler
+    events:
+      - http:
+          path: /address/{address}
+          method: GET
+          cors: true
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
